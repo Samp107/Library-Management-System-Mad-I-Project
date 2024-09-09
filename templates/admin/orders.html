@@ -1,0 +1,92 @@
+{% extends 'admin/adminbase.html' %}
+{% block content %} 
+    
+        
+        <div class="container" style="margin-left: 10px; margin-right: 50px; padding-top: 50px;">
+          
+            <div class="row gy-2">
+              <hr style="color: white;">
+              <h1 style="color: white; text-align: center;">Order List</h1>
+              <hr style="color: white;">
+                    {% for message in get_flashed_messages() %}
+                    <div class="alert alert-info">
+                           {{ message }}
+                    </div>
+                    {% endfor %}
+              <table>
+            
+                <thead>
+              
+                  <tr>
+                    <th scope="col">Order</th>
+                    <th scope="col">User_ID</th>
+                    <th scope="col">BooK_ID</th>
+                    <th scope="col">Book_title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Date_Issued</th>
+                    <th scope="col">Date_Return</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+              
+                </thead>
+            
+                
+                <tbody>
+                    
+                  <tr>
+                    {% for order in orders %}
+                    
+                    <td scope="col">{{order.id}}</td>
+                    <td scope="col">{{order.user_id}}</td>
+                    <td scope="col">{{order.book_id}}</td>
+                    <td scope="col">{{order.book_title}}</td>
+                    <td scope="col">{{order.book_price}}</td>
+                    <td scope="col">{{order.date_issued}}</td>
+                    <td scope="col">{{order.date_return}}</td>
+                    
+                    <td>
+                      {% if order.status == 1 %}
+                      <button class="btn btn-success" style="margin-top: 10px;">Approved</button>
+                      {% else %}
+                      <a href="/admin/approve/{{order.id}}">
+                        <button class="btn btn-warning">Approve</button>
+                    </a>
+                    {% endif %}
+                      
+                      <!-- <button style="margin-top: 10px;" type=submit class="btn btn-warning" > <a href= "#" style="text-decoration:none;"> Approve </a> </button> -->
+                      <hr style="width: 50%;">
+                      {% if order.status == 2 %}
+                      <button class="btn btn-success" style="margin-top: 10px;">Rejected</button>
+                      {% else %}
+                      <a href="/admin/notapprove/{{order.id}}">
+                        <button class="btn btn-warning">Not Approve</button>
+                    </a>
+                    {% endif %}
+                      
+                      
+                       
+                      <button type=submit class="btn btn-danger" style="margin-bottom: 10px;" > <a href= {{ url_for('delete_from_cart', book_id = order.book_id) }} style="text-decoration:none;"> delete </a> </button>                   
+                    </td>
+
+                  </tr>
+>
+                    
+                  {% endfor %}
+                </tbody>
+              
+              
+            
+               
+              </table>
+              
+            </div>
+          </div>
+        
+      </section>
+     
+     </div>
+     
+{% endblock %}
+
+

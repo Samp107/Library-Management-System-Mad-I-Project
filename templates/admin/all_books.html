@@ -1,0 +1,76 @@
+{% extends 'admin/adminbase.html' %}
+{% block content %} 
+           
+        <div class="container" style="margin-left: 10px; margin-right: 50px; padding-top: 50px;">
+          <button type="button" class="btn btn-primary"><a href="/add_book" style="color: white; float: right; text-decoration: none;"> Add Book</a></button>
+          <hr>  
+          <div class="row gy-2">
+              {% for message in get_flashed_messages() %}
+              <div class="alert alert-info">
+                     {{ message }}
+
+              </div>
+              {% endfor %}
+                    <h2 style="color: white; text-align: center;">Book List</h2>
+              
+              <table>
+            
+                <thead>
+              
+                  <tr>
+                    <th scope="col">BooK_ID</th>
+                    <th scope="col">Book_title</th>
+                    <th scope="col">Book_Image</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Section</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                    
+                  </tr>
+              
+                </thead>
+            
+                
+                <tbody>
+                    
+                  <tr>
+                    {% for book in books %}
+                    
+                    <td scope="col">{{book.book_id}}</td>
+                    <td scope="col"><a href= {{ url_for('getBook', book_id = book.book_id) }} style="text-decoration:none; color: beige;">{{book.book_title}}</a></td>
+                    <td><img style="width: 100px; height: 150px;" src="{{ book.book_img_path }}" alt=""></td>
+                    <td scope="col">{{book.Author}}</td>
+                    <td scope="col">{{book.section_name}}</td>
+                    <td scope="col">{{book.book_price}}</td>
+                    <td><button style="margin-top: 5px;" type=submit class="btn btn-warning" > <a href= {{ book.book_pdf_path }} style="text-decoration:none;"> View PDF </a> </button>
+                        <hr style="width: 50%;">
+                        <button type=submit class="btn btn-warning" > <a href= {{ url_for('edit_book', book_id = book.book_id) }} style="text-decoration:none;"> Edit Book </a> </button>
+                        <hr style="width: 50%;">
+                        <button style="margin-bottom: 5px;" type=submit class="btn btn-danger" > <a href= {{ url_for('delete_book', book_id = book.book_id) }} style="text-decoration:none; color: beige;"> Delet a book </a> </button>
+                        
+                      </td>
+                      
+                      
+                    
+                  
+                  
+                  </tr>
+                
+                  {% endfor %}
+                </tbody>
+              
+              
+            
+               
+              </table>
+              
+            </div>
+          </div>
+        
+      </section>
+     
+     </div>
+     
+{% endblock %}
+
+

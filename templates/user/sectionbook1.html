@@ -1,0 +1,55 @@
+{% extends 'user/userbase.html' %}
+{% block content %} 
+
+<div class="container" style="margin-left: 10px; margin-right: 10px; padding-top: 20px;">
+          
+  <div class="row gy-2">
+    <hr style="color: white;">
+    <h1 style="color: white; text-align: center;">{{section_name}}</h1>
+    <hr style="color: white;">
+    {% for book in books %}
+    {% if book.section_name == section_name %}
+    
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info">
+           {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="col-lg-2 col-md-3" style="margin-top: 30px;">
+      <div class="box p-3" style="background-color: rgb(197, 189, 189);">
+        <a class="text-dark text-decoration-none" href="{{ url_for('getBook', book_id = book.book_id) }}">
+        <img src= {{ book.book_img_path }} class="img-thumbnail" alt="...">
+        <hr>
+        <figure class="text-start"  style="color: rgb(119, 24, 37);">
+          <blockquote class="blockquote">
+            <p>{{book.book_title}}</p>
+          </blockquote>
+          <figcaption class="blockquote-footer"  style="color: white;">
+            <cite title="Source Title" >{{book.Author}}</cite>
+          </figcaption>
+          <figcaption class="blockquote-footer"  style="color: white;">
+            <cite title="Source Title" >{{book.section_name}}</cite>
+          </figcaption>
+        </figure>
+         </a>
+          
+      <div class="row" style="margin-top: auto;"">
+        <button type="button" class=" btn btn-info btn-sm">Rs.{{book.book_price}}</button>
+        
+        <button type=submit class="btn btn-warning btn-sm"><a class="nav-item nav-link" href="{{ url_for('add_to_cart', book_id = book.book_id) }}">Add to cart</a></button>
+      </div>
+        <!-- <button type=submit class="btn btn-danger" > <a href= {{ book.book_pdf_path }} style="text-decoration:none; color: beige;"> View PDF </a> </button> -->
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends 'admin/adminbase.html' %}
+{% block content %} 
+       
+        <div class="container" style="margin-left: 10px; margin-right: 1px; padding-top: 20px; margin-top: 20px;">
+          
+          <div class="row gy-2" style="color: white; ">
+            <hr style="color: white;">
+            <h1 style="color: white; text-align: center;">Admin Dashboard</h1>
+            <hr style="color: white;">
+
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-info">
+                   {{ message }}
+            </div>
+            {% endfor %}
+            <div class="container text-center">
+              <div class="row" style=" margin-right: 5px; width: 100%;height: 100%; ">
+                
+                <div class="col-6 col-sm" style="color: rgb(214, 79, 79); margin-left: 100px;">
+                  <div class="row" style="margin-left: 30px; margin-bottom: 10px;">
+                  <div class="row" style=" margin-right: 10px; margin-top: 10px; width: 190px; border: 1px solid rgb(175, 26, 96); background-color: white; ">
+                    <a href="/all_users"><div class="col-8" style="width: 100%;">
+                      <img src="static\IMG\dummy.jpg" class="img-fluid rounded-center" alt="..." style="margin-top: 10px; height: 200px; width: 200px;">
+                    </div></a>
+                    <div class="col" style="text-align: center;">
+                      <h2> Users {{ user_count-1}}</h2>
+                    </div>
+                  </div>
+                  <div class="col-lg-1" style=" margin-top: 40px; width: 20px;">
+                    <div class="vl"></div>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="row" style="margin-right: 10px; margin-top: 10px; width: 190px; border: 1px solid white; background-color: white; ">
+                    <a href="/all_books"><div class="col-8" style="width: 100%;">
+                      <img src="static\IMG\book_dash.webp" class="img-fluid rounded-center" alt="..." style="margin-top: 10px; height: 200px; width: 200px;">
+                    </div></a>
+                    <div class="col" style="text-align: center;">
+                      <h2> Books {{ book_count }}</h2>
+                    </div>
+                  </div>
+                  <div class="col-lg-1" style=" margin-top: 40px; width: 20px;">
+                    <div class="vl"></div>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <div class="row" style="margin-right: 10px; margin-top: 10px; width: 190px; border: 1px solid white; background-color: white; ">
+                    <a href="/all_sections"><div class="col-8" style="width: 100%;">
+                      <img src="static\IMG\section_dash.jpg" class="img-fluid rounded-center" alt="..." style="margin-top: 10px; height: 200px; width: 200px;">
+                    </div></a>
+                    <div class="col" style="text-align: center;">
+                      <h2> Section {{ section_count }}</h2>
+                    </div>
+                  </div>
+                  <div class="col-lg-1" style=" margin-top: 40px; width: 20px;">
+                    <div class="vl"></div>
+                  </div>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <div class="row" style=" margin-top: 10px; width: 190px; border: 1px solid white; background-color: white; ">
+                    <a href="/orders"><div class="col-8" style="width: 100%;">
+                      <img src="static\IMG\orders_dash.jpg" class="img-fluid rounded-center" alt="..." style="margin-top: 10px; height: 200px; width: 200px;">
+                    </div></a>
+                    
+                    <div class="col" style="text-align: center;">
+                      <h2> Orders {{ order_count }}</h2>
+                    </div>
+                  </div>
+                </a>
+                </div>
+
+                  
+
+
+
+
+                </div>
+            
+                <!-- Force next columns to break to new line at md breakpoint and up -->
+                <div class="w-100 d-none d-md-block"></div>
+            
+                <div class="col-6 col-sm-4"></div>
+                <div class="col-6 col-sm-4"></div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+
+{% endblock %}

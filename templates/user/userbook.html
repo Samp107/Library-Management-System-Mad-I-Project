@@ -1,0 +1,53 @@
+{% extends 'user/userbase.html' %}
+{% block content %} 
+
+<div class="container" style="margin: 10px; padding-top: 0;">
+    <div class="row gy-2">
+
+      {% for book in cart %}
+      <div class="col-lg-2 col-md-4">
+      
+        <div class="box p-3" style="background-color: rgb(197, 189, 189);">
+          <a class="text-dark text-decoration-none" href="{{ url_for('getBook', book_id = book.book_id) }}">
+          <img src= {{ book.book_img_path }} class="img-thumbnail" alt="...">
+          <hr>
+          <h5 class="card-title">{{book.book_title}}</h5>
+          
+          <h6 class="card-title">by {{book.Author}}</h6>
+              <hr>
+            {% for item in order%}
+            {% if item.book_id == book.book_id %}
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">date-Issued: {{ item.date_issued }}</li>
+          </ul> 
+          <hr>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">date-Return: {{ item.date_return }}</li>
+          </ul> 
+          <!-- <h6 class="card-title">Section: {{book.section_name}}</h6> -->
+          {% endif %}
+          {% endfor %}
+      </a>
+          <hr>
+
+    
+
+          <form id="remove_from_cart_form_{{ book.id }}" action="{{ url_for('remove_from_cart', book_id=book.book_id) }}" method="post">
+              <button type="submit" class="btn btn-danger" form="remove_from_cart_form_{{ book.id }}">Return</button>
+          </form>
+
+          <button type=submit class="btn btn-danger" > <a href= {{ book.book_pdf_path }} style="text-decoration:none; color: beige;"> View PDF </a> </button>
+   
+      
+          <!-- <button type=submit class="btn btn-danger" > <a href= "/#" style="text-decoration:none; color: beige;"> Not Approve </a> </button> -->
+
+      </div>
+  
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'user/userbase.html' %}
+{% block content %} 
+
+
+<div class="container" style="margin-left: 10px; margin-right: 10px; padding-top: 20px;">
+          
+  <div class="row gy-2">
+    <hr style="color: white;">
+    <h1 style="color: white; text-align: center;">Profile</h1>
+    <hr style="color: white;">
+
+    
+
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info">
+           {{ message }}
+    </div>
+    {% endfor %}
+    <div class="container text-center" style="color: white;margin-top: 30px;">
+      <div class="row">
+        <div class="col-2">
+          <img src={{ user.profile_img_path }} class="float-start" style="height: 175px; width: 175px; border-radius: 10rem;"><br>
+  
+        </div>
+        <div class="col-lg-1" style=" margin-top: 40px; width: 20px; margin-left: 50px;">
+          <div class="vl"></div>
+        </div>
+        <div class="col-4">
+  
+          <form method="post" enctype="multipart/form-data" >
+              <div class="mb-3">
+                  <label for="exampleFormControlInput1" class="form-label">User Name</label>
+                  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter your User Profile" value="{{user.user_name}}" name="user_name">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">User mail</label>
+                  <input type="text" class="form-control" id="exampleFormControlTextarea1" rows="3" value="{{user.user_mail}}" name="user_mail">
+                </div>
+                <div class="mb-3">
+                  <label for="formFile" class="form-label">Profile pic</label>
+                  <input class="form-control" type="file" id="formFile" name="profile_pic">
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Submit</button>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+{% endblock %}

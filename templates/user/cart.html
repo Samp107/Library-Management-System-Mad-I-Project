@@ -1,0 +1,102 @@
+{% extends 'user/userbase.html' %}
+{% block content %} 
+
+<div class="container" style="margin: 10px; padding-top: 0;">
+    <div class="row gy-2">
+
+      {% for book in cart %}
+      
+      <div class="col-lg-2 col-md-3" style="margin-top: 30px;">
+      
+        <div class="box p-3" style="background-color: rgb(197, 189, 189);">
+          <a class="text-dark text-decoration-none" href="{{ url_for('getBook', book_id = book.book_id) }}">
+          <img src= {{ book.book_img_path }} class="img-thumbnail" alt="...">
+          <hr>
+          <figure class="text-start"  style="color: rgb(119, 24, 37);">
+            <blockquote class="blockquote">
+              <p>{{book.book_title}}</p>
+            </blockquote>
+            <figcaption class="blockquote-footer"  style="color: white;">
+              <cite title="Source Title" >{{book.Author}}</cite>
+            </figcaption>
+            <figcaption class="blockquote-footer"  style="color: white;">
+              <cite title="Source Title" >{{book.section_name}}</cite>
+            </figcaption>
+          </figure>
+      </a>
+          <hr>
+
+          
+          <form id="remove_from_cart_form_{{ book.id }}" action="{{ url_for('remove_from_cart', book_id=book.book_id) }}" method="post">
+              <button type="submit" class="btn btn-danger" form="remove_from_cart_form_{{ book.id }}">Remove</button>
+          </form>
+          <hr>
+          {% if book.status == 2 %}
+          <button type=button class="btn btn-danger" > Rejected </button>
+          {% else %}
+          <button type=button class="btn btn-warning" > Waiting for Approval </button>
+          {% endif %}
+
+        </div>
+  
+      </div>
+      
+      {% endfor %}
+    </div>
+  </div>
+  <div class="col-lg-2" style="margin-top: 100px; margin-right: 40px;">
+    <div class="card text-center" style="width: 100%; border: 1px solid black; background-color:aliceblue; height: 300px;">
+      <div class="card-body">
+          <h5 class="card-title">Total:</h5>
+          <p class="card-text">${{final_total|round(2)}}</p>
+          {% if cart != [] %}
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Clear Cart
+              </button>
+              <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                  Checkout
+              </button>
+          {% endif %}
+  
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">This will clear all items in your cart!</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          Are you sure?
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                          <a class="btn btn-danger" href="/cart/clear">Clear Cart</a>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Thank you for Using book at MyLab!</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                          Click 'Submit' to Download the Book.
+                      </div>
+                      <div class="modal-footer">
+                         
+                          <a class="btn btn-primary" href="#">Submit</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div> 
+  </div>
+
+
+
+{% endblock %}

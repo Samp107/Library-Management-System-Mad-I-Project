@@ -1,0 +1,72 @@
+{% extends 'admin/adminbase.html' %}
+{% block content %} 
+    
+        
+        <div class="container" style="margin-left: 10px; margin-right: 50px; padding-top: 50px;">
+          <button type="button" class="btn btn-warning"><a href="/add_book" style="color: white; float: right; text-decoration: none;"> Add Book</a></button>
+            <hr>
+          <div class="row gy-2" style="margin-left: 20px;">
+                
+                    <form class="mb-3" method="post" enctype="multipart/form-data" style="border: 1px solid; padding: 30px; border-radius: 10px; background-color:rgb(221, 213, 111);">
+                      <div class="row">
+                        <div class="col">
+                          <label for="book_title" class="form-label" style="float:left;">Enter Book Title</label>
+                          <input type="text" class="form-control" id="book_title" value="{{book.book_title}}" name="book_title" placeholder="Book Title">
+                        </div>
+                        <div class="col">
+                          <label for="Author" class="form-label" style="float:left;">Enter Author Name</label>
+                          <input type="text" class="form-control" id="Author" value="{{book.Author}}" name="Author" placeholder="Name of Author">
+                        </div>
+                      </div>
+                      <br>
+                      <div class="row">
+                        <div class="col">
+                          <label class="form-label" for="book_image" style="float:left;">Upload Book Image</label>
+                          <input type="file" class="form-control" id="formFile" name="book_image" placeholder="Upload Book Image">
+                        </div>
+                        <div class="col">
+                          <label class="form-label" for="book_pdf" style="float:left;">Upload Book PDF</label>
+                          <input type="file" class="form-control" id="formFile" name="book_pdf" placeholder="Upload Book PDF">
+                        </div>
+                      </div>
+                      <br>
+                        <div class="mb-3">
+                          <label for="book_content" class="form-label" style="float:left;">Book Description</label>
+                          <input type="text" class="form-control" id="book_content" name="book_content" value="{{book.book_content}}" placeholder="Book Description">
+                        </div>
+                      
+                        
+                        
+                        <div class="row">
+                            <div class="col">
+                                <label for="book_price" class="form-label" style="float:left;">Section</label>
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="inputGroupSelect01" style="float:left;">Section</label>
+                                    <select class="form-select" id="inputGroupSelect01" value="{{book.section_name}}" name="section_name">
+                                      <option selected>Section...</option>
+                                      {% for item in section %}
+                                      <option>{{item.section_name}}</option>
+                                      {% endfor %}
+                                    </select>
+                                  </div>
+                            </div>
+                        <div class="col">
+                          <label for="book_price" class="form-label" style="float:left;">Enter Book Price</label>
+                          <input type="text" class="form-control" id="book_price" value="{{book.book_price}}" name="book_price" placeholder="Price">
+                        </div>
+                        
+                      </div>
+                   
+                        <button type="submit" class="btn btn-primary" style="margin-left: 45%;">Edit Book</button>
+                      </form>              
+
+            </div>
+          </div>
+        
+      </section>
+     
+     </div>
+     
+{% endblock %}
+
+
